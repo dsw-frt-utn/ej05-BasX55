@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dsw2026Ej5.Domain;
 
-public class VehiculoCombustible: Vehiculo
+public class VehiculoCombustible : Vehiculo
 {
     private double kilometrosPorLitro;
     private double litrosExtra;
@@ -26,8 +26,18 @@ public class VehiculoCombustible: Vehiculo
         return litrosExtra;
     }
 
+    
     public override double CalcularConsumo(double kilometros)
     {
-        return kilometros * kilometrosPorLitro;
+        //agregada la logica
+        double total = kilometros / kilometrosPorLitro;
+        if ((DateTime.Now.Year - this.GetAnio()) > 5)
+        {
+            double litroEx = litrosExtra * (kilometros / 15);
+            total += litroEx;
+        }
+        ;
+        //
+        return total;
     }
 }
